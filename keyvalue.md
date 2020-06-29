@@ -49,43 +49,50 @@ Note that browsers support HTTP PUT and DELETE via javascript but only GET/POST 
 included in HTML specs.  For ease of use in constructing clients, HTTP POST is used
 to create or modify resources in an idempotent fashion.
 
-GET  <api URL>/node/<UUID>/<data name>/help
+### help
 
-	Returns data-specific help message.
+	GET  <api URL>/node/<UUID>/<data name>/help
 
+		Returns data-specific help message.
 
-GET  <api URL>/node/<UUID>/<data name>/info
-POST <api URL>/node/<UUID>/<data name>/info
+### info
 
-	Retrieves or puts data properties.
+	GET  <api URL>/node/<UUID>/<data name>/info
+	POST <api URL>/node/<UUID>/<data name>/info
 
-	Example: 
+		Retrieves or puts data properties.
 
-	GET <api URL>/node/3f8c/stuff/info
+		Example:
 
-	Returns JSON with configuration settings.
+		GET <api URL>/node/3f8c/stuff/info
 
-	Arguments:
+		Returns JSON with configuration settings.
 
-	UUID          Hexadecimal string with enough characters to uniquely identify a version node.
-	data name     Name of keyvalue data instance.
+		Arguments:
 
-GET <api URL>/node/<UUID>/<data name>/tags
-POST <api URL>/node/<UUID>/<data name>/tags?<options>
+		UUID          Hexadecimal string with enough characters to uniquely identify a version node.
+		data name     Name of keyvalue data instance.
 
-	GET retrieves JSON of tags for this instance.
-	POST appends or replaces tags provided in POST body.  Expects JSON to be POSTed
-	with the following format:
+### tags
 
-	{ "tag1": "anything you want", "tag2": "something else" }
+	GET <api URL>/node/<UUID>/<data name>/tags
+	POST <api URL>/node/<UUID>/<data name>/tags?<options>
 
-	To delete tags, pass an empty object with query string "replace=true".
+		GET retrieves JSON of tags for this instance.
+		POST appends or replaces tags provided in POST body.  Expects JSON to be POSTed
+		with the following format:
 
-	POST Query-string Options:
+		{ "tag1": "anything you want", "tag2": "something else" }
 
-	replace   Set to "true" if you want passed tags to replace and not be appended to current tags.
-				Default operation is false (append).
-			   	
+		To delete tags, pass an empty object with query string "replace=true".
+
+		POST Query-string Options:
+
+		replace   Set to "true" if you want passed tags to replace and not be appended to current tags.
+					Default operation is false (append).
+
+### keys
+
 GET  <api URL>/node/<UUID>/<data name>/keys
 
 	Returns all keys for this data instance in JSON format:
